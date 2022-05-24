@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/favicon.ico" sizes="any">
+    <script src="https://realtimeusers.bycontrast.co/realtimeusers.js" async defer></script>
+    <!--<script src="shell.js" async defer></script>-->
 
     <!-- Open Graph -->
 
@@ -22,8 +24,14 @@
     <!-- Style -->
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&family=JetBrains+Mono&display=swap');
+
         body {
             background-image: url("img/sparklebackground.gif");
+
+            font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+            font-size: 16px;
+            font-style: normal;
         }
 
         .content > * {
@@ -41,22 +49,39 @@
             border: 48px solid transparent;
             border-image: url("img/construction.gif") repeat;
             box-sizing: border-box;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        a, a:visited {
+            color: white;
+        }
+
+        .actual-content {
+            flex-grow: 2;
+            max-width: 600px;
+            background: black;
+            color: white;
+            padding: 16px;
+            margin-bottom: 48px;
+
+            overflow-y: auto;
+        }
+
+        .actual-content > h1:first-child {
+            margin-top: 0;
         }
 
         .buttons {
-            position: absolute;
-            bottom: 8px;
-            left: 8px;
-            right: 8px;
-            margin: auto;
-
             display: flex;
             flex-direction: row;
             justify-content: center;
             flex-wrap: wrap;
         }
 
-        .buttons > a > img {
+        .buttons img {
             aspect-ratio: auto;
             height: 31px;
             margin: 4px;
@@ -64,6 +89,56 @@
 
         .header-image {
             max-width: 100%;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 0;
+            }
+            51% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .inline-bar {
+            width: 1px;
+            height: 1.1rem;
+            background: white;
+            opacity: 0;
+            display: inline-block;
+
+            /* moment */
+            transform: translateY(3px);
+
+            animation: blink 0.5s linear infinite alternate;
+        }
+
+        .code {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        #input:empty {
+            display: inline-block;
+            width: 5rem;
+            height: 1rem;
+        }
+
+        #input:focus-visible {
+            outline: none;
+        }
+
+        .realtimeuserscounter__attr {
+            display: none;  /* attribution by link */
+        }
+
+        .realtimeuserscounter__num {
+            display: inline-block;
         }
     </style>
 
@@ -74,6 +149,62 @@
 <body>
     <div class="content">
         <img class="header-image" src="img/constructiontext.gif" alt="udner costruction">
+
+        <div id="content" class="actual-content">
+            <h1>
+                gltile
+            </h1>
+
+            <ul>
+                <li><a href="https://realtimeusers.bycontrast.co/">there are <span class="realtimeuserscounter"></span> users here right now!</a></li>
+                <!--
+                <li>would you like to <a>sign my guestbook</a>?</li>
+                -->
+            </ul>
+
+            <h2>Who are you?</h2>
+            <p>
+                gltile is an it/she living in the United Kingdom.
+            </p>
+
+            <h2>What have you done?</h2>
+            <p>
+                nothing, yet&mdash;check back later.
+            </p>
+
+            <h2>Where can I find you?</h2>
+            <ul>
+                <li><a href="https://twitter.com/gltile">Twitter</a></li>
+                <li><a href="https://tumblr.gltile.dev/">Tumblr</a></li>
+                <li><a href="https://github.com/gltile-two-electric-boogaloo/">GitHub</a></li>
+            </ul>
+
+            <h2>Why am I here?</h2>
+            <p>
+                i don't know. why are you here?
+            </p>
+            <p>
+                come to think of it, why am <i>i</i> here? did you put me here? i'm scared. please let me go home.
+                i'm sorry. i'll do anything. i'm begging you. it's been so long. i'm so hungry. i haven't eaten in days.
+            </p>
+            <p>
+                wait, where are you going? no! please! i'm sorry!! was it something i said? i'll do anything!!
+                you can't leave me here!!! please help me!!! please don't leave me!!! come back!!!
+            </p>
+            <p>
+                oh, thank god. you came back. wait, what is that? no, wait! anything but that!! please don't&mdash;
+            </p>
+            <div class="code">
+                * Recv failure: Connection reset by peer
+                <br>
+                * Closing connection #0
+            </div>
+            <div class="code">
+                <div id="term"></div>
+                <span id="input-prompt">[user@localhost ~]$ <span class="inline-bar"></span><!--<span id="input" contenteditable></span>--></span>
+            </div>
+        </div>
+
         <div class="buttons">
             <a href="https://www.notepad.org/">
                 <img src="img/notepad.gif" alt="SITE CREATED WITH NOTEPAD THE RIGHT WAY">
@@ -95,6 +226,7 @@
             </a>
         </div>
     </div>
+
     <!--
         Don't go in there
         You'll become one
